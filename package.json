@@ -1,6 +1,6 @@
 {
   "name": "fund-mcp-server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MCP Server scaffold aligned with alibabacloud-devops-mcp-server architecture (single interface example).",
   "type": "module",
   "license": "Apache-2.0",

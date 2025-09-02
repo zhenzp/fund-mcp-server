@@ -213,6 +213,7 @@ async function runServer() {
   } else {
     const transport = new StdioServerTransport();
     await server.connect(transport);
+    console.error("fund MCP Server running on stdio");
   }
 }
 

@@ -1,5 +1,5 @@
 # 使用官方Node.js运行时作为基础镜像
-FROM node:18-alpine
+FROM node:lts-alpine  
 
 # 设置工作目录
 WORKDIR /app
@@ -24,4 +24,4 @@ RUN adduser -S fund-mcp -u 1001
 RUN mkdir -p /app/logs && chown -R fund-mcp:nodejs /app
 
 # 启动命令
-CMD ["node", "dist/index.js", "--http"]
+CMD ["node", "dist/index.js"]

@@ -5,10 +5,10 @@
   "type": "module",
   "license": "Apache-2.0",
   "author": {
-    "name": "fund-mcp"
+    "name": "fund-mcp-server"
   },
   "bin": {
-    "fund-mcp": "./dist/index.js"
+    "fund-mcp-server": "./dist/index.js"
   },
   "files": [
     "dist"

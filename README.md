@@ -31,7 +31,7 @@ Fund MCP Server 是一个专门为基金投资领域设计的 MCP 服务器，�
   "mcpServers": {
     "fund-mcp-server": {
       "command": "npx",
-      "args": ["fund-mcp-server"]
+      "args": ["-y", "fund-mcp-server"]
     }
   }
 }
@@ -83,12 +83,13 @@ MCP_TRANSPORT=http
 
 ### 环境变量说明
 
-| 变量名 | 默认值 | 说明 |
-|--------|--------|------|
+
+| 变量名            | 默认值                                                           | 说明                |
+| ----------------- | ---------------------------------------------------------------- | ------------------- |
 | `FUND_KB_API_URL` | `https://report.haiyu.datavita.com.cn/api/admin/knowledge/query` | 基金知识库 API 地址 |
-| `PORT` | `3000` | 服务监听端口 |
-| `NODE_ENV` | `development` | 运行环境 |
-| `MCP_TRANSPORT` | `stdio` | MCP 传输模式 |
+| `PORT`            | `3000`                                                           | 服务监听端口        |
+| `NODE_ENV`        | `development`                                                    | 运行环境            |
+| `MCP_TRANSPORT`   | `stdio`                                                          | MCP 传输模式        |
 
 ## 快速开始
 
@@ -116,13 +117,11 @@ chmod +x deploy.sh
    ```bash
    npm install
    ```
-
 2. **构建项目**
 
    ```bash
    npm run build
    ```
-
 3. **启动服务**
 
    ```bash
@@ -253,13 +252,11 @@ docker-compose restart
    lsof -i :3000
    kill -9 <PID>
    ```
-
 2. **权限问题**
 
    ```bash
    chmod +x scripts/*.sh
    ```
-
 3. **依赖问题**
 
    ```bash

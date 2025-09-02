@@ -289,3 +289,27 @@ Apache-2.0
 - 📖 部署文档：`scripts/DEPLOYMENT.md`
 - 🐛 问题反馈：GitHub Issues
 - 💬 讨论：GitHub Discussions
+
+## 自动发布到 npm
+
+当你推送版本标签（如 `v0.1.1`）时，仓库会使用 GitHub Actions 自动发布到 npm。
+
+前置准备：
+
+- 在 npm 创建 Automation Token，并在 GitHub 仓库 `Settings` → `Secrets and variables` → `Actions` 中添加：
+  - 名称：`NPM_TOKEN`
+  - 值：你的 npm Automation Token
+
+使用方式：
+
+```bash
+npm version patch   # 或 minor/major
+git push --follow-tags
+# 或者显式推送标签
+# git push origin v0.1.1
+```
+
+工作流位于 `.github/workflows/publish-on-tag.yml`，规则：
+
+- 触发条件：推送 `v*.*.*` 标签
+- 步骤：安装依赖 → 构建 → 将 `package.json` 版本对齐标签 → `npm publish --access public`

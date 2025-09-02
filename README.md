@@ -1,15 +1,30 @@
 # Fund MCP Server
 
-一个基于 Model Context Protocol (MCP) 的基金知识库服务器。
+一个基于 Model Context Protocol (MCP) 的基金知识库服务器，提供基金相关知识的查询和检索功能。
 
-Configure AI application (e.g. Claude Desktop).
+## 服务介绍
 
+Fund MCP Server 是一个专门为基金投资领域设计的 MCP 服务器，通过集成外部知识库 API，为用户提供基金知识查询服务。该服务器支持多种部署模式，包括标准 MCP 协议、HTTP REST API 和 Server-Sent Events (SSE) 模式。
 
-## 开始使用 ｜ Start
+### 主要功能
 
-配置 AI 应用（例如 Claude Descktop）。
+- **基金知识查询**: 通过关键词搜索基金相关知识库
+- **多协议支持**: 支持 MCP 标准协议、HTTP REST API 和 SSE
+- **灵活部署**: 支持本地部署、Docker 部署和生产环境部署
+- **跨平台**: 支持 Windows、Linux 和 macOS
 
-Configure AI application (e.g. Claude Desktop).
+### 技术特性
+
+- 基于 TypeScript 开发，类型安全
+- 使用 Zod 进行参数验证
+- 支持环境变量配置
+- 提供健康检查和监控接口
+
+## 服务配置
+
+### MCP 客户端配置
+
+配置 AI 应用（例如 Claude Desktop）：
 
 ```json
 {
@@ -21,6 +36,59 @@ Configure AI application (e.g. Claude Desktop).
   }
 }
 ```
+
+### HTTP REST API 配置
+
+启动 HTTP 模式服务：
+
+```bash
+npm run start:http
+```
+
+服务将在 `http://localhost:3000` 启动，提供以下 API 端点：
+
+- `GET /api/health` - 健康检查
+- `GET /api/tools` - 获取可用工具列表
+- `POST /api/tools/call` - 调用工具
+
+### SSE 模式配置
+
+启动 SSE 模式服务：
+
+```bash
+npm run start:sse
+```
+
+SSE 端点：`http://localhost:3000/sse`
+
+## 环境变量配置
+
+### 必需环境变量
+
+创建 `llm-config.env` 文件或设置以下环境变量：
+
+```env
+# 知识库 API 配置
+FUND_KB_API_URL=https://report.haiyu.datavita.com.cn/api/admin/knowledge/query
+
+# 服务端口配置
+PORT=3000
+
+# 运行环境
+NODE_ENV=production
+
+# MCP 传输模式 (可选: sse, http)
+MCP_TRANSPORT=http
+```
+
+### 环境变量说明
+
+| 变量名 | 默认值 | 说明 |
+|--------|--------|------|
+| `FUND_KB_API_URL` | `https://report.haiyu.datavita.com.cn/api/admin/knowledge/query` | 基金知识库 API 地址 |
+| `PORT` | `3000` | 服务监听端口 |
+| `NODE_ENV` | `development` | 运行环境 |
+| `MCP_TRANSPORT` | `stdio` | MCP 传输模式 |
 
 ## 快速开始
 
@@ -48,11 +116,13 @@ chmod +x deploy.sh
    ```bash
    npm install
    ```
+
 2. **构建项目**
 
    ```bash
    npm run build
    ```
+
 3. **启动服务**
 
    ```bash
@@ -61,6 +131,9 @@ chmod +x deploy.sh
 
    # SSE 模式
    npm run start:sse
+
+   # 标准 MCP 模式
+   npm start
    ```
 
 ## 部署选项
@@ -102,25 +175,14 @@ fund-mcp-server/
 │   ├── fund-mcp-server.service  # systemd 服务配置
 │   ├── Dockerfile               # Docker 镜像
 │   └── docker-compose.yml       # Docker Compose
-├── src/                         # 源代码
+├── tool-registry/               # 工具注册表
+├── tool-handlers/               # 工具处理器
+├── common/                      # 公共模块
 ├── dist/                        # 构建输出
 └── package.json                 # 项目配置
 ```
 
-## 配置
-
-### 环境变量
-
-创建 `llm-config.env` 文件：
-
-```env
-LLM_API_URL=your_llm_api_url
-LLM_API_KEY=your_llm_api_key
-PORT=3000
-NODE_ENV=production
-```
-
-### 端口配置
+## 端口配置
 
 默认端口：3000
 
@@ -191,11 +253,13 @@ docker-compose restart
    lsof -i :3000
    kill -9 <PID>
    ```
+
 2. **权限问题**
 
    ```bash
    chmod +x scripts/*.sh
    ```
+
 3. **依赖问题**
 
    ```bash

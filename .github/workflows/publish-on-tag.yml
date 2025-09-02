@@ -28,7 +28,17 @@ jobs:
       - run: npm run build
 
       - name: Align version with tag (strip leading v)
-        run: npm version ${GITHUB_REF_NAME#v} --no-git-tag-version
+        shell: bash
+        run: |
+          TAG_VERSION=${GITHUB_REF_NAME#v}
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          echo "Tag version: $TAG_VERSION"
+          echo "Current package.json version: $CURRENT_VERSION"
+          if [ "$CURRENT_VERSION" != "$TAG_VERSION" ]; then
+            npm version "$TAG_VERSION" --no-git-tag-version
+          else
+            echo "Version already aligned. Skipping npm version."
+          fi
 
       - run: npm publish --provenance --access public
         env:

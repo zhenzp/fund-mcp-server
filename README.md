@@ -22,19 +22,21 @@ Fund MCP Server 是一个专门为基金投资领域设计的 MCP 服务器，�
 
 ## 服务配置
 
-### MCP 客户端配置
-
-配置 AI 应用（例如 Claude Desktop）：
+### MCP sever configuration
 
 ```json
 {
-  "mcpServers": {
-    "fund-mcp": {
-      "command": "npx",
-      "args": ["-y", "fund-mcp"]
+    "mcpServers": {
+        "fund-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "fund-mcp"
+            ]
+        }
     }
-  }
 }
+
 ```
 
 ### HTTP REST API 配置

@@ -7,6 +7,10 @@
   "author": {
     "name": "fund-mcp-server"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhenzp/fund-mcp-server"
+  },
   "bin": {
     "fund-mcp-server": "./dist/index.js"
   },

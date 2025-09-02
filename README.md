@@ -2,7 +2,12 @@
 
 一个基于 Model Context Protocol (MCP) 的基金知识库服务器。
 
+Configure AI application (e.g. Claude Desktop).
 
+
+## 开始使用 ｜ Start
+
+配置 AI 应用（例如 Claude Descktop）。
 
 Configure AI application (e.g. Claude Desktop).
 
@@ -16,7 +21,6 @@ Configure AI application (e.g. Claude Desktop).
   }
 }
 ```
-
 
 ## 快速开始
 

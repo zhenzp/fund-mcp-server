@@ -2,17 +2,35 @@
 
 一个基于 Model Context Protocol (MCP) 的基金知识库服务器。
 
+
+
+Configure AI application (e.g. Claude Desktop).
+
+```json
+{
+  "mcpServers": {
+    "fund-mcp-server": {
+      "command": "npx",
+      "args": ["fund-mcp-server"]
+    }
+  }
+}
+```
+
+
 ## 快速开始
 
 ### 🚀 一键部署
 
 #### Windows 用户
+
 ```cmd
 # 双击运行或在命令行执行
 deploy.bat
 ```
 
 #### Linux/macOS 用户
+
 ```bash
 # 给脚本执行权限并运行
 chmod +x deploy.sh
@@ -22,20 +40,21 @@ chmod +x deploy.sh
 ### 📦 手动部署
 
 1. **安装依赖**
+
    ```bash
    npm install
    ```
-
 2. **构建项目**
+
    ```bash
    npm run build
    ```
-
 3. **启动服务**
+
    ```bash
    # HTTP 模式
    npm run start:http
-   
+
    # SSE 模式
    npm run start:sse
    ```
@@ -43,20 +62,24 @@ chmod +x deploy.sh
 ## 部署选项
 
 ### 1. 快速部署 (开发环境)
+
 - **Windows**: `deploy.bat` 或 `scripts\deploy.bat`
 - **Linux/macOS**: `./deploy.sh` 或 `./scripts/deploy.sh`
 
 ### 2. 生产环境部署
+
 - **Linux**: `./scripts/deploy-production.sh deploy`
 - **systemd 服务**: 参考 `scripts/DEPLOYMENT.md`
 
 ### 3. Docker 部署
+
 ```bash
 cd scripts
 docker-compose up -d
 ```
 
 ### 4. 查看详细部署说明
+
 - 查看 `scripts/README.md` 获取脚本说明
 - 查看 `scripts/DEPLOYMENT.md` 获取详细部署指南
 
@@ -83,7 +106,9 @@ fund-mcp-server/
 ## 配置
 
 ### 环境变量
+
 创建 `llm-config.env` 文件：
+
 ```env
 LLM_API_URL=your_llm_api_url
 LLM_API_KEY=your_llm_api_key
@@ -92,28 +117,34 @@ NODE_ENV=production
 ```
 
 ### 端口配置
+
 默认端口：3000
+
 - 环境变量：`PORT=8080`
 - 命令行：`--port 8080`
 
 ## 开发
 
 ### 安装依赖
+
 ```bash
 npm install
 ```
 
 ### 开发模式
+
 ```bash
 npm run watch
 ```
 
 ### 构建
+
 ```bash
 npm run build
 ```
 
 ### 测试
+
 ```bash
 npm test
 ```
@@ -121,6 +152,7 @@ npm test
 ## 服务管理
 
 ### 生产环境
+
 ```bash
 # 查看状态
 ./scripts/deploy-production.sh status
@@ -133,6 +165,7 @@ npm test
 ```
 
 ### Docker
+
 ```bash
 # 查看状态
 docker-compose ps
@@ -147,18 +180,20 @@ docker-compose restart
 ## 故障排除
 
 ### 常见问题
+
 1. **端口被占用**
+
    ```bash
    lsof -i :3000
    kill -9 <PID>
    ```
-
 2. **权限问题**
+
    ```bash
    chmod +x scripts/*.sh
    ```
-
 3. **依赖问题**
+
    ```bash
    npm cache clean --force
    rm -rf node_modules package-lock.json
@@ -166,6 +201,7 @@ docker-compose restart
    ```
 
 ### 日志位置
+
 - 应用日志：`logs/fund-mcp-server.log`
 - 错误日志：`logs/fund-mcp-server-error.log`
 

@@ -29,7 +29,7 @@ Fund MCP Server 是一个专门为基金投资领域设计的 MCP 服务器，�
 ```json
 {
   "mcpServers": {
-    "fund-mcp-server": {
+    "fund-mcp": {
       "command": "npx",
       "args": ["-y", "fund-mcp"]
     }

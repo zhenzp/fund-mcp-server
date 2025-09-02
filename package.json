@@ -8,7 +8,7 @@
     "name": "fund-mcp"
   },
   "bin": {
-    "fund-mcp": "dist/index.js"
+    "fund-mcp": "./dist/index.js"
   },
   "files": [
     "dist"
